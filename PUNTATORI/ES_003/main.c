@@ -15,13 +15,13 @@ int main(int argc, char const *argv[]){
         /* code */
         if (strcmp((str+k), end) == 0){
             /* code */
-            tro =k;
+            tro = k;
         }
         else{
             k++;
         }
     }
-    printf("\n%d\n", k);
-    printf("\n%d\n", sizeof(char));
+    puts(str);
+    printf("Dimensione: %d\n", k);
     return 0;
 }
