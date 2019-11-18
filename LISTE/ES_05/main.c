@@ -16,8 +16,6 @@ struct El{
 void stampaLista(struct El* l);
 void ordinaRipplesort(struct El* l);
 
-
-
 int main(int argc, char const *argv[]){
     /* code */
     int n;
