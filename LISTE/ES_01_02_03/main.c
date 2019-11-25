@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
 struct El{
     int valore;
     struct El* next;
@@ -36,7 +34,7 @@ int main(int argc, char const *argv[]){
                 /* code */
                 //assegnoal puntatore l dell'elemento corrente un puntatore che punta all'elemento successivo
                 l->next = (struct El*) malloc(sizeof(struct El));
-                l =  l->next;
+                l = l->next;
             }
             l->valore = n;  //assegno n al campo valore dell'elemento corrente
             l->next = NULL; //assegno al campo next dell'elemento correnteil valore NULL
