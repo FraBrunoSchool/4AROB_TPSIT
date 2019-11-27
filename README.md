@@ -1,7 +1,10 @@
 # TPSIT
 This is the tpsit repository.
 
-* C:
-  * CSV;
-  * PUNTATORI;
-  * LISTE
+##ARGUMENTS
+  * C:
+    * CSV FILE;
+    * POINTERS;
+    * LIST;
+    * STACKS;
+    * QUEUES;
