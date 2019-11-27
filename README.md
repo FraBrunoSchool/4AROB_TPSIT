@@ -1,7 +1,7 @@
 # TPSIT
 This is the tpsit repository.
 
-##ARGUMENTS
+## ARGUMENTS
   * C:
     * CSV FILE;
     * POINTERS;
