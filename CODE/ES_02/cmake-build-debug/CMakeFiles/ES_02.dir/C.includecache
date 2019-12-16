@@ -7,8 +7,18 @@
 #IncludeRegexTransform: 
 
 E:/DATI/GitHub/TPSIT/CODE/ES_02/main.c
+stdlib.h
+-
+../../LIBRERIA/library.c
+E:/DATI/GitHub/TPSIT/LIBRERIA/library.c
+
+E:/DATI/GitHub/TPSIT/LIBRERIA/library.c
+library.h
+E:/DATI/GitHub/TPSIT/LIBRERIA/library.h
 stdio.h
 -
 stdlib.h
 -
+
+E:/DATI/GitHub/TPSIT/LIBRERIA/library.h
 
