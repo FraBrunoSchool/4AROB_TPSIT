@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
 
 void enqueue(El **head, El **tail, El *element){
 
@@ -175,4 +177,93 @@ void deAllocaLista(El *l){
     }
     free(l);
     printf("Free\n");
+}
+
+void ordinaRipplesort(El *l) {
+    El *lista = l;
+    int x;
+    while (l->next != NULL){
+        if ((l->valore) > (l->next->valore)) {
+            x = l->next->valore;
+            l->next->valore = l->valore;
+            l->valore = x;
+            l = lista;
+        }else{
+            printf("else\n");
+            l = l->next;
+        }
+    }
+}
+
+El *merge(El *l, El *l2){
+    El *firstElement = NULL;
+    El *pointer = NULL;
+
+    while(l != NULL) {
+        if (pointer == NULL) {
+            firstElement = (El *) malloc(sizeof(El));
+            firstElement->valore = l->valore;
+            firstElement->next = NULL;
+            pointer = firstElement;
+        }
+        else {
+            pointer->next = (El *) malloc(sizeof(El));
+            pointer = pointer->next;
+            pointer->valore = l->valore;
+            pointer->next = NULL;
+        }
+        l = l-> next;
+    }
+
+    while(l2 != NULL) {
+        if (pointer == NULL) {
+            firstElement = (El *) malloc(sizeof(El));
+            firstElement->valore = l2->valore;
+            firstElement->next = NULL;
+            pointer = firstElement;
+        }
+        else {
+            pointer->next = (El *) malloc(sizeof(El));
+            pointer = pointer->next;
+            pointer->valore = l2->valore;
+            pointer->next = NULL;
+        }
+        l2 = l2-> next;
+    }
+
+    ordinaRipplesort(firstElement);
+
+    return firstElement;
+}
+
+void stampaPila(El **head){  //stampo la pila
+    El *ret;
+    int i=1;
+
+    ret=pop(head);
+    while(ret!=NULL){   //ripeto finchè ci sono elementi
+        printf("\n valore [%d]: %d", i, ret->valore);
+        i++;
+        free(ret);  //libero lo spazio che ormai non mi serve più
+        ret=pop(head);  //leggo il prossimo elemento
+    }
+}
+
+bool controlloStringa(char cifra[]){    //controllo se la stringa è composta solo da cifre
+    char numeri[11]="0123456789";
+    int i,k;
+    bool error=true;
+    for(i=0;cifra[i]!='\0';i++){
+        for(k=0;k<11;k++){
+            if(cifra[i]==numeri[k]){
+               error=false;
+            }
+        }
+        if(error!=false){
+            return false;
+        }else{
+            error=true;
+        }
+    }
+    return true;
 }

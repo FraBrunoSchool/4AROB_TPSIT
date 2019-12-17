@@ -1,6 +1,11 @@
 #ifndef LIBRERIA_LIBRARY_H
 #define LIBRERIA_LIBRARY_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+
 typedef struct el{
     /* data */
     int valore;
@@ -21,5 +26,9 @@ void stampaListaNonRicorsiva(El* l);
 void lunghezzaCiclo(El *l, int *cont);
 int lunghezzaRicorsiva(El *l);
 void deAllocaLista(El *l);
+void ordinaRipplesort(El *l);
+El *merge(El *l, El *l2);
+void stampaPila(El **head);
+bool controlloStringa(char cifra[]);
 
 #endif //LIBRERIA_LIBRARY_H
