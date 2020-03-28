@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 void stampaMsg(void *arg);
 
@@ -13,6 +14,7 @@ int main(int argc, char const *argv[]) {
     /* code */
     //funzione creazione thread
     pthread_create(&t[i], NULL, (void *)stampaMsg, (void *) &i);
+    sleep(1);
   }
 
   printf("Padre: attendo la terminazione\n");
@@ -20,19 +22,21 @@ int main(int argc, char const *argv[]) {
   for (int i=0; i<10; i++) {
     /* code */
     //funzione creazione thread
-    pthread_join(t[i], (void**)&ret);
-    printf("Restituzione pthread_exit: %d\n", *ret);
+    pthread_join(t[i], NULL);
   }
-  printf("Padre: thread sono terminati, chiudo applicazione\n");
+  printf("Padre: thread terminati");
   return 0;
 }
 
 void stampaMsg(void *arg) {
   /* code */
   int tId=pthread_self();
-  int dato= *((int*)arg);
-  int *dato_din=(int*)malloc(sizeof(int));
-  *dato_din=*((int*)arg);
-  printf("Sono il thread %u. Parametro passato: %d. Parametro passato din: %d\n", tId, dato, *dato_din);
-  pthread_exit(&dato_din);
+  //Sezione critica
+  // mutex bloccata -> rossa
+  int *dato=(int*)malloc(sizeof(int));
+  dato_din=arg;
+  printf("Sono il thread %u. Parametro passato: %d.\n", tId, *dato);
+  //fine Sezione critica
+  // mutex sbloccata ->verde
+  pthread_exit(0);
 }
