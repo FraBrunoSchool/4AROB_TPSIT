@@ -71,7 +71,6 @@ void *cassa1(void *arg) {
   /* code */
   pthread_mutex_lock(&m1); //blocchiamo la mutex ->rosso
 
-  srand(time(NULL));
   int  i = rand() % 10 + 1;
 
   printf("\n> Sono il cliente %ld in fila alla cassa1 e voglio acquistare %d biglietti: \n", pthread_self(), i);
@@ -98,7 +97,6 @@ void *cassa2(void *arg) {
   /* code */
   pthread_mutex_lock(&m2); //blocchiamo la mutex ->rosso
 
-  srand(time(NULL));
   int  i = rand() % 10 + 1;
 
   printf("\n> Sono il cliente %ld in fila alla cassa2 e voglio acquistare %d biglietti: \n", pthread_self(), i);
