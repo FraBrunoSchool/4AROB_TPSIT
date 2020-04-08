@@ -38,7 +38,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#define CLIENTI = 25;
+#define CLIENTI 25
 
 pthread_mutex_t m1, m2;
 int numeroBiglietti=100;
@@ -48,19 +48,21 @@ void *cassa2(void *arg);
 
 int main(int argc, char const *argv[]) {
   /* code */
+
   pthread_t t[CLIENTI];
 
   pthread_mutex_unlock(&m1); //sblocchiamo la mutex ->verde
   pthread_mutex_unlock(&m2); //blocchiamo la mutex ->rosso
-
-  for (int i=0; i<CLIENTI; i++) {
+  srand(time(NULL));
+  for (int i=0; i < CLIENTI; i++) {
     /* code */
-    if (i%2==0) pthread_create(&t[i], NULL, (void *)cassa2, NULL);
-    else pthread_create(&t[i], NULL, (void *)cassa1, NULL);
+    int r = rand() %2;
+    if (r == 0) pthread_create(&t[i], NULL, (void *)cassa2, NULL);
+    else if (r==1) pthread_create(&t[i], NULL, (void *)cassa1, NULL);
     sleep(1);
   }
 
-  for (int i=0; i<CLIENTI; i++) pthread_join(t[i], NULL);
+  for (int i=0; i < CLIENTI; i++) pthread_join(t[i], NULL);
 
   return 0;
 }
