@@ -38,8 +38,32 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+#define CLIENTI = 25;
+
 pthread_mutex_t m1, m2;
 int numeroBiglietti=100;
+
+void *cassa1(void *arg);
+void *cassa2(void *arg);
+
+int main(int argc, char const *argv[]) {
+  /* code */
+  pthread_t t[CLIENTI];
+
+  pthread_mutex_unlock(&m1); //sblocchiamo la mutex ->verde
+  pthread_mutex_unlock(&m2); //blocchiamo la mutex ->rosso
+
+  for (int i=0; i<CLIENTI; i++) {
+    /* code */
+    if (i%2==0) pthread_create(&t[i], NULL, (void *)cassa2, NULL);
+    else pthread_create(&t[i], NULL, (void *)cassa1, NULL);
+    sleep(1);
+  }
+
+  for (int i=0; i<CLIENTI; i++) pthread_join(t[i], NULL);
+
+  return 0;
+}
 
 void *cassa1(void *arg) {
   /* code */
@@ -93,25 +117,4 @@ void *cassa2(void *arg) {
 
   pthread_mutex_unlock(&m1); //sblocchiamo la mutex ->verde
   pthread_exit(NULL);
-}
-
-
-int main(int argc, char const *argv[]) {
-  /* code */
-  pthread_t t[25];
-
-  pthread_mutex_unlock(&m1); //sblocchiamo la mutex ->verde
-  pthread_mutex_unlock(&m2); //blocchiamo la mutex ->rosso
-
-  for (int i=0; i<25; i++) {
-    /* code */
-    if (i%2==0) pthread_create(&t[i], NULL, (void *)cassa2, NULL);
-    else pthread_create(&t[i], NULL, (void *)cassa1, NULL);
-
-    sleep(1);
-  }
-
-  for (int i=0; i<25; i++) pthread_join(t[i], NULL);
-
-  return 0;
 }
