@@ -88,8 +88,14 @@ void *cassa1(void *arg) {
       printf("> biglietti disponibili: 0\n");
     }
   }
+  int r = rand() %2;
+  if (r == 0) {
+    /* code */
+    pthread_mutex_unlock(&m2); //sblocchiamo la mutex ->verde
+  }else{
+    pthread_mutex_unlock(&m1); //sblocchiamo la mutex ->verde
+  }
 
-  pthread_mutex_unlock(&m2); //sblocchiamo la mutex ->verde
   pthread_exit(NULL);
 }
 
@@ -115,6 +121,12 @@ void *cassa2(void *arg) {
     }
   }
 
-  pthread_mutex_unlock(&m1); //sblocchiamo la mutex ->verde
+  int r = rand() %2;
+  if (r == 0) {
+    /* code */
+    pthread_mutex_unlock(&m1); //sblocchiamo la mutex ->verde
+  }else{
+    pthread_mutex_unlock(&m2); //sblocchiamo la mutex ->verde
+  }
   pthread_exit(NULL);
 }
