@@ -1,3 +1,0 @@
-E:/DATI/GitHub/TPSIT/LIBRERIA/cmake-build-debug/CMakeFiles/LIBRERIA.dir
-E:/DATI/GitHub/TPSIT/LIBRERIA/cmake-build-debug/CMakeFiles/edit_cache.dir
-E:/DATI/GitHub/TPSIT/LIBRERIA/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+E:/DATI/GitHub/TPSIT/PILE/ES_01/main.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+
